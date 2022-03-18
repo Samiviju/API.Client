@@ -18,6 +18,8 @@ void ConfigureServices(IServiceCollection services)
     });
 }
 
+
+
 builder.Services.AddDbContext<ClientContext>(x => x.UseSqlite("Data source-client.db"));
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
