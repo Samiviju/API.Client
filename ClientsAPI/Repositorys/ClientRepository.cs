@@ -6,8 +6,8 @@ namespace ClientsAPI.Repositories
 {
     public class ClientRepository : IClientRepository
     {
-        public readonly ClientContext _context;
-        public ClientRepository(ClientContext context)
+        public readonly DbClientsEF _context;
+        public ClientRepository(DbClientsEF context)
         {
             _context = context;
         }

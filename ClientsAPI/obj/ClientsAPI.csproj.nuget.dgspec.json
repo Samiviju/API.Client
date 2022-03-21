@@ -4,14 +4,14 @@
     "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj": {}
   },
   "projects": {
-    "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj": {
+    "D:\\API.Client\\ClientsAPI.Util\\ClientsAPI.Util.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj",
-        "projectName": "ClientsAPI",
-        "projectPath": "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj",
+        "projectUniqueName": "D:\\API.Client\\ClientsAPI.Util\\ClientsAPI.Util.csproj",
+        "projectName": "ClientsAPI.Util",
+        "projectPath": "D:\\API.Client\\ClientsAPI.Util\\ClientsAPI.Util.csproj",
         "packagesPath": "C:\\Users\\samuel.vieira\\.nuget\\packages\\",
-        "outputPath": "D:\\API.Client\\ClientsAPI\\obj\\",
+        "outputPath": "D:\\API.Client\\ClientsAPI.Util\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -45,6 +45,83 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj",
+        "projectName": "ClientsAPI",
+        "projectPath": "D:\\API.Client\\ClientsAPI\\ClientsAPI.csproj",
+        "packagesPath": "C:\\Users\\samuel.vieira\\.nuget\\packages\\",
+        "outputPath": "D:\\API.Client\\ClientsAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\samuel.vieira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\API.Client\\ClientsAPI.Util\\ClientsAPI.Util.csproj": {
+                "projectPath": "D:\\API.Client\\ClientsAPI.Util\\ClientsAPI.Util.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.3, )"
@@ -56,10 +133,6 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.14.0, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.2.3, )"
             }
           },
           "imports": [

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientsAPI.Utility
+namespace ClientsAPI.Util
 {
-    public class Configuration
+    internal class Configuration
     {
         private IConfiguration appSettings;
 
@@ -19,8 +19,10 @@ namespace ClientsAPI.Utility
         internal Configuration()
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+
             if (string.IsNullOrWhiteSpace(env))
-                throw new Exception("A variável de ambiente ASPNETCORE_ENVIRONMENT não está configuarada");
+                throw new Exception("A variável de ambiente ASPNETCORE_ENVIRONMENT não está configurada");
 
             try
             {

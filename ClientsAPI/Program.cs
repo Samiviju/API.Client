@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 
 void ConfigureServices(IServiceCollection services)
@@ -16,11 +17,13 @@ void ConfigureServices(IServiceCollection services)
         swagger.IncludeXmlComments(documentationModels);
         swagger.IncludeXmlComments(documentationWebAPI);
     });
+
+
 }
 
 
 
-builder.Services.AddDbContext<ClientContext>(x => x.UseSqlite("Data source-client.db"));
+builder.Services.AddDbContext<DbClientsEF>(x => x.UseSqlite("Data source-client.db"));
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 builder.Services.AddControllers();

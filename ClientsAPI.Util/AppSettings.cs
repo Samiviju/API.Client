@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientsAPI.Utility
+namespace ClientsAPI.Util
 {
-    public class AppSettings
+    public static class AppSettings
     {
         public static string GetConnectionString()
         {
