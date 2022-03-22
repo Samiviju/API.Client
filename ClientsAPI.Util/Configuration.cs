@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClientsAPI.Util
 {
@@ -19,7 +14,6 @@ namespace ClientsAPI.Util
         internal Configuration()
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
 
             if (string.IsNullOrWhiteSpace(env))
                 throw new Exception("A variável de ambiente ASPNETCORE_ENVIRONMENT não está configurada");

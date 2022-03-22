@@ -1,68 +1,82 @@
-﻿using ClientsAPI.Model;
-using ClientsAPI.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using ClientsAPI.Context;
+using ClientsAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientsAPI.Controller.V1
 {
-
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly IClientRepository _clientRepository;
-        public ClientController(IClientRepository clientRepository)
+        private readonly DbClientsEF _context;
+        private DbSet<Client> clientCtx;
+
+        public ClientController(DbClientsEF context)
         {
-            _clientRepository = clientRepository;
+            this._context = context;
+            this._context.Set<Client>();
         }
 
         [HttpGet]
         [Route("api/v1/client")]
-        public async Task<IEnumerable<Client>> GetClients()
+        public async Task<IActionResult> GetAll()
         {
-            return await _clientRepository.Get();
-        }
-
-        [HttpGet]
-        [Route("api/v1/client/{cpf}")]
-        public async Task<ActionResult<Client>> GetClientsCpf(string cpf)
-        {
-            return await _clientRepository.Get(cpf);
+            var res = await clientCtx.ToListAsync();
+            return Ok(res);
         }
 
         [HttpPost]
         [Route("api/v1/client")]
-        public async Task<ActionResult<Client>> PostClients([FromBody] Client client)
+        public async Task<ActionResult<Client>> PostClients(Client client)
         {
-            var newClient = await _clientRepository.Create(client);
-            return newClient;
+            _context.Clients.Add(client);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetClient", new { cpf = client.Cpf }, client);
         }
 
         [HttpDelete]
         [Route("api/v1/client")]
-        public async Task<ActionResult> DeleteClient(string cpf)
+        public async Task<ActionResult<Client>> DeleteClient(string cpf)
         {
-            var clienteDelete = await _clientRepository.Get(cpf);
+            var client = await _context.Clients.FindAsync(cpf);
+            if (client == null)
+            {
+                return BadRequest();
+            }
 
-            if (clienteDelete != null)
-                await _clientRepository.Delete(clienteDelete.Cpf);
-
-            return null;
-             
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
         [HttpPut]
-        [Route("api/v1/client")]
-        public async Task<ActionResult> PutClients(string cpf, [FromBody] Client client)
+        [Route("api/v1/client/{cpf}")]
+        public async Task<ActionResult> PutClients(string cpf, Client client)
         {
-            if (cpf == client.Cpf)
-                await _clientRepository.Update(client);
+            if (cpf != client.Cpf)
+            {
+                return BadRequest();
+            }
 
-            return null;
+            _context.Entry(client).State = EntityState.Modified;
 
-            
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (cpf != client.Cpf)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
         }
-        
-
-
     }
 }

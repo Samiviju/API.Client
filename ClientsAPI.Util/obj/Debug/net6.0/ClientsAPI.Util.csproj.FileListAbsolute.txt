@@ -1,0 +1,12 @@
+D:\API.Client\ClientsAPI.Util\bin\Debug\net6.0\ClientsAPI.Util.deps.json
+D:\API.Client\ClientsAPI.Util\bin\Debug\net6.0\ClientsAPI.Util.dll
+D:\API.Client\ClientsAPI.Util\bin\Debug\net6.0\ClientsAPI.Util.pdb
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.csproj.AssemblyReference.cache
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.GeneratedMSBuildEditorConfig.editorconfig
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.AssemblyInfoInputs.cache
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.AssemblyInfo.cs
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.csproj.CoreCompileInputs.cache
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.dll
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\refint\ClientsAPI.Util.dll
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ClientsAPI.Util.pdb
+D:\API.Client\ClientsAPI.Util\obj\Debug\net6.0\ref\ClientsAPI.Util.dll
