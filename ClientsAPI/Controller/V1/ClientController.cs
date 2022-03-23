@@ -9,7 +9,6 @@ namespace ClientsAPI.Controller.V1
     public class ClientController : ControllerBase
     {
         private readonly DbClientsEF _context;
-        private DbSet<Client> clientCtx;
 
         public ClientController(DbClientsEF context)
         {
@@ -18,56 +17,53 @@ namespace ClientsAPI.Controller.V1
         }
 
         [HttpGet]
-        [Route("api/v1/client")]
-        public async Task<IActionResult> GetAll()
+        [Route("api/v1/clients")]
+        public async Task<ActionResult<IEnumerable<Client>>> GetAll()
         {
-            var res = await clientCtx.ToListAsync();
-            return Ok(res);
+            return await _context.Clients.Include(c => c.Cpf).ToListAsync();
         }
 
-        [HttpPost]
-        [Route("api/v1/client")]
+        [HttpPost("{id}")]
         public async Task<ActionResult<Client>> PostClients(Client client)
         {
             _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClient", new { cpf = client.Cpf }, client);
+            return CreatedAtAction("GetClient", new { id = client.Id }, client);
         }
 
         [HttpDelete]
         [Route("api/v1/client")]
-        public async Task<ActionResult<Client>> DeleteClient(string cpf)
+        public async Task<ActionResult<Client>> DeleteClient(int id)
         {
-            var client = await _context.Clients.FindAsync(cpf);
+            var client = await _context.Clients.FindAsync(id);
             if (client == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-
             _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
-            return Ok();
+
+            return client;
         }
 
         [HttpPut]
-        [Route("api/v1/client/{cpf}")]
-        public async Task<ActionResult> PutClients(string cpf, Client client)
+        [Route("api/v1/client/{id}")]
+        public async Task<ActionResult> PutClients(int id, Client client)
         {
-            if (cpf != client.Cpf)
+            if (id != client.Id)
             {
                 return BadRequest();
             }
 
             _context.Entry(client).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (cpf != client.Cpf)
+                if (client != null)
                 {
                     return NotFound();
                 }
@@ -76,6 +72,7 @@ namespace ClientsAPI.Controller.V1
                     throw;
                 }
             }
+
             return NoContent();
         }
     }
