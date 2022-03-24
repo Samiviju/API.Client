@@ -20,16 +20,18 @@ namespace ClientsAPI.Controller.V1
         [Route("api/v1/clients")]
         public async Task<ActionResult<IEnumerable<Client>>> GetAll()
         {
-            return await _context.Clients.Include(c => c.Cpf).ToListAsync();
+            var client = await _context.Clients.ToListAsync();
+            return Ok(client);
         }
 
-        [HttpPost("{id}")]
+        [HttpPost]
+        [Route("api/v1/client")]
         public async Task<ActionResult<Client>> PostClients(Client client)
         {
             _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClient", new { id = client.Id }, client);
+            return CreatedAtAction(nameof(PostClients), new { id = client.Id }, client);
         }
 
         [HttpDelete]

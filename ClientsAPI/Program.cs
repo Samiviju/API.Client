@@ -19,7 +19,7 @@ void ConfigureServices(IServiceCollection services)
 }
 
 builder.Services.AddDbContext<DbClientsEF>(o => o.UseSqlServer(AppSettings.GetConnectionString()));
-//builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
